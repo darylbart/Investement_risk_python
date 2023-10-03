@@ -1,3 +1,5 @@
+<!-- result.html -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +20,29 @@
             margin-bottom: 10px;
             text-align: center;
         }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px auto;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
     <h2>Thank you for completing the questionnaire.</h2>
     <p>Based on your responses, your investment risk appetite is: {{ risk_appetite }}</p>
+
+    <h3>Your Responses:</h3>
+
+    {% for item in user_responses_with_questions %}
+        <div class="card">
+            <strong>Question:</strong> {{ item.question.text }}<br>
+            <strong>Your Response:</strong> {{ item.response }}
+        </div>
+    {% endfor %}
+
 </body>
 </html>

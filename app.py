@@ -27,16 +27,18 @@ def questions(num_questions):
         # Determine risk appetite based on user responses
         risk_appetite = determine_risk_appetite(user_responses, questions_data)
 
+        # Prepare data for template
+        user_responses_with_questions = [{'question': question, 'response': response} for question, response in zip(questions_data[:num_questions], user_responses)]
+
         # Write a detailed summary to a text file
         with open('summary.txt', 'w') as file:
             file.write('Risk Appetite: {}\n'.format(risk_appetite))
             file.write('User Responses:\n')
-            for i, (question, response) in enumerate(zip(questions_data[:num_questions], user_responses), start=1):
-                file.write('Question {}: {}\n'.format(i, question))
-                file.write('  User Response: {}\n'.format(response))
+            for i, (response) in enumerate(user_responses, start=1):
+                file.write('Question {}: {}\n'.format(i, response))
             file.write('Summary Numbers: {}\n'.format(", ".join(str(i) for i in user_responses)))
 
-        return render_template('result.html', risk_appetite=risk_appetite)
+        return render_template('result.html', risk_appetite=risk_appetite, user_responses_with_questions=user_responses_with_questions)
 
     return render_template('questions.html', num_questions=num_questions, questions=questions_data)
 
