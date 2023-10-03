@@ -1,18 +1,21 @@
-# risk_determination.py
-
 import json
 
 def determine_risk_appetite(user_responses, questions):
-    total_score = 0
+    total_weighted_score = 0
+    total_weight = 0
 
     for i, response in enumerate(user_responses):
-        total_score += int(response) * questions[i % len(questions)]["weight"]
+        total_weighted_score += int(response) * questions[i % len(questions)]["weight"]
+        total_weight += questions[i % len(questions)]["weight"]
 
-    average_score = total_score / len(user_responses)
+    if total_weight == 0:
+        return "Unable to determine risk appetite"  # Handle edge case
 
-    if average_score < 2.5:
+    average_score = total_weighted_score / total_weight
+
+    if average_score < 2.25:
         risk_appetite = "Conservative"
-    elif 2.5 <= average_score <= 3.5:
+    elif 2.25 <= average_score < 3.75:
         risk_appetite = "Moderate"
     else:
         risk_appetite = "Aggressive"
