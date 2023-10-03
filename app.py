@@ -34,8 +34,9 @@ def questions(num_questions):
         with open('summary.txt', 'w') as file:
             file.write('Risk Appetite: {}\n'.format(risk_appetite))
             file.write('User Responses:\n')
-            for i, (response) in enumerate(user_responses, start=1):
-                file.write('Question {}: {}\n'.format(i, response))
+            for i, (question, response) in enumerate(zip(questions_data[:num_questions], user_responses), start=1):
+                file.write('Question {}: {}\n'.format(i, question['text']))  # Include question text
+                file.write('  User Response: {}\n'.format(response))
             file.write('Summary Numbers: {}\n'.format(", ".join(str(i) for i in user_responses)))
 
         return render_template('result.html', risk_appetite=risk_appetite, user_responses_with_questions=user_responses_with_questions)
