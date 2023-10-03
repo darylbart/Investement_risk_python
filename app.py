@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from risk_determination import determine_risk_appetite
 from questions_loader import load_questions
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -27,11 +28,15 @@ def questions(num_questions):
         # Determine risk appetite based on user responses
         risk_appetite = determine_risk_appetite(user_responses, questions_data)
 
+        # Generate a unique timestamp for the summary file
+        timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        summary_filename = f'summary_{timestamp}.txt'
+
         # Prepare data for template
         user_responses_with_questions = [{'question': question, 'response': response} for question, response in zip(questions_data[:num_questions], user_responses)]
 
-        # Write a detailed summary to a text file
-        with open('summary.txt', 'w') as file:
+        # Write a detailed summary to the unique timestamped summary file
+        with open(summary_filename, 'w') as file:
             file.write('Risk Appetite: {}\n'.format(risk_appetite))
             file.write('User Responses:\n')
             for i, (question, response) in enumerate(zip(questions_data[:num_questions], user_responses), start=1):
