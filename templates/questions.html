@@ -1,12 +1,57 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .questionnaire-title {
+            color: blue;
+            margin-bottom: 20px;
+        }
+        .question {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #005F6B;
+        }
+    </style>
+</head>
 <body>
-    <h2>Questionnaire</h2>
-    <form action="/questions/{{ num_questions }}" method="post">
-        {% for i in range(num_questions) %}
-            <p>{{ questions[i % questions|length]['text'] }}</p>
-            <input type="number" name="question{{ i + 1 }}" min="1" max="5">
-        {% endfor %}
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <h2 class="questionnaire-title">Questionnaire</h2>
+        <form action="/questions/{{ num_questions }}" method="post">
+            {% for i in range(num_questions) %}
+                <div class="question">
+                    <p>{{ questions[i % questions|length]['text'] }}</p>
+                    <input type="number" name="question{{ i + 1 }}" min="1" max="5">
+                </div>
+            {% endfor %}
+            <input type="submit" value="Submit" class="submit-button">
+        </form>
+    </div>
 </body>
 </html>
