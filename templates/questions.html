@@ -19,8 +19,11 @@
         }
         .question {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             text-align: left;
+        }
+        .question p {
+            margin-bottom: 10px;
         }
         input[type="number"] {
             width: 100%;
@@ -42,12 +45,15 @@
 </head>
 <body>
     <div class="container">
-        <h2 class="questionnaire-title">Questionnaire</h2>
+        <h2 class="questionnaire-title">Investment Risk Appetite Questionnaire</h2>
+        <p>
+            This questionnaire will help determine your risk appetite when it comes to investing. Please rate your level of agreement with the following statements on a scale of 1 to 5, where 1 means strongly disagree and 5 means strongly agree.
+        </p>
         <form action="/questions/{{ num_questions }}" method="post">
             {% for i in range(num_questions) %}
                 <div class="question">
                     <p>{{ questions[i % questions|length]['text'] }}</p>
-                    <input type="number" name="question{{ i + 1 }}" min="1" max="5">
+                    <input type="number" name="question{{ i + 1 }}" min="1" max="5" placeholder="Enter your rating (1-5)">
                 </div>
             {% endfor %}
             <input type="submit" value="Submit" class="submit-button">
