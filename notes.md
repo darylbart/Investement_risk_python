@@ -1,4 +1,4 @@
-Determining a person's risk appetite involves assessing various factors beyond simple numerical responses and weights. Here are some additional factors that are commonly considered in determining risk appetites:
+Determining a person's risk appetite involves assessing various factors beyond simple numerical responses and weights. Factors that are commonly considered in determining risk appetites:
 
 1. **Financial Goals:**
    Understanding an individual's financial goals is crucial. Goals can vary from short-term (e.g., buying a house) to long-term (e.g., retirement planning). The timeline and nature of these goals greatly influence risk tolerance.
@@ -32,5 +32,3 @@ Determining a person's risk appetite involves assessing various factors beyond s
 
 11. **External Economic and Market Factors:**
     Economic conditions, market trends, interest rates, and geopolitical events can also influence an individual's perception of risk and their risk appetite.
-
-It's important to integrate a holistic approach that considers both quantitative and qualitative aspects to accurately determine an individual's risk appetite. This can be achieved through thorough discussions, risk assessment tools, financial planning, and regular reviews to ensure alignment with their financial objectives and risk tolerance.
